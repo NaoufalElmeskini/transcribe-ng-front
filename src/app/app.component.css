@@ -1,0 +1,16 @@
+.content {
+    background-color: blue;
+    height: auto;
+    display: flex;
+}
+
+.left-side {
+    background-color: antiquewhite;
+}
+.right-side {
+    background-color: antiquewhite;
+}
+
+.withMargin {
+    margin: 2%;
+}

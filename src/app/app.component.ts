@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { UploadComponent } from './upload/upload.component';
+import { DisplayTranscriptComponent } from './display-transcript/display-transcript.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, UploadComponent, DisplayTranscriptComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
