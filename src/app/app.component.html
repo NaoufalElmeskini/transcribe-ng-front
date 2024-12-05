@@ -1,10 +1,10 @@
 <div class="content">
   <div class="left-side withMargin">
-    <app-upload></app-upload>
+    <app-upload (upload)="updateFile($event)"></app-upload>
   </div>
 
   <div class="right-side withMargin">
-    <app-display-transcript></app-display-transcript>
+    <app-display-transcript [file]="fileUploaded"></app-display-transcript>
   </div>
 </div>
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, NgModule, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-upload',
@@ -6,12 +6,19 @@ import { Component } from '@angular/core';
   templateUrl: './upload.component.html',
   styleUrl: './upload.component.css'
 })
-export class UploadComponent {
-  file: any;
+export class UploadComponent implements OnInit{
+  file: any = 'initial';
 
+  @Output()
+  upload: EventEmitter<any> = new EventEmitter();
+  
+  ngOnInit() {
+    this.upload.emit('from child with love');
+  }
 
-  displaySize() {
-    
+  updateFile($value: any) {
+    this.file = $value.target.files[0];
+    this.upload.emit(this.file);
   }
 
 }

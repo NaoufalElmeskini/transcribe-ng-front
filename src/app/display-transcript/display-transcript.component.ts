@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 
 @Component({
   selector: 'app-display-transcript',
@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './display-transcript.component.css'
 })
 export class DisplayTranscriptComponent {
+  @Input()
+  file: any;
+
+  transcript = '';
 
 }

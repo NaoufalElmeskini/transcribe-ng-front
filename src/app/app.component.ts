@@ -10,5 +10,13 @@ import { DisplayTranscriptComponent } from './display-transcript/display-transcr
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'ng-observable-rxjs';
+  private title = 'ng-observable-rxjs';
+  fileUploaded: any;
+
+  updateFile($event: any) {
+    this.fileUploaded = $event;
+  }
+
+
+
 }

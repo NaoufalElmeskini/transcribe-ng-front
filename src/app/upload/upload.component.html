@@ -1,3 +1,5 @@
 <h1>upload a video to translate</h1>
-<input type="file" title="upload">
-<button>validate</button>
+<input #upload type="file" title="upload" (change)="this.updateFile($event)">
+<p>name: {{ this.file.name }}</p>
+<p>size: {{ this.file.size }}</p>
+<button type="submit">process</button>
