@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, NgModule, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormControl, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -8,9 +8,9 @@ import { Subject, takeUntil } from 'rxjs';
   templateUrl: './form-demo.component.html',
   styleUrl: './form-demo.component.css'
 })
-export class FormDemoComponent implements OnInit, OnDestroy{
+export class FormDemoComponent implements OnInit, OnDestroy {
   file: any = '';
-  lastName = new FormControl('');
+  lastName!: FormControl;
   message = 'default';
 
   @Output()
@@ -18,29 +18,28 @@ export class FormDemoComponent implements OnInit, OnDestroy{
 
   private destroy$ = new Subject<void>();
 
-  
+
   ngOnInit() {
     this.upload.emit('from child with love');
-    this.lastName.setValue('oldemort');
-    this.lastName.valueChanges.subscribe(this.boredObserver);
-    this.lastName.valueChanges.subscribe(this.godForbidObserver);
+    this.lastName = new FormControl('');
+    this.lastName.addValidators(this.totoValidator);
+
+    this.lastName.setValue('tot');
+    this.lastName.valueChanges.subscribe(this.loggingObserver);
   }
 
-  godForbidObserver =(newName: any) => {
-    if (newName == 'voldemort') {
-      this.message = 'not valid!! not valid!';
+  totoValidator = (control: AbstractControl) => {
+    let value = control.value;
+    if (value == 'toto') {
+      this.message = 'not valid!';
     } else {
-      this.message = 'it s allright :)';
-    }
-    console.log('lastName: ' + newName);
-  }
+      this.message = 'valid :)';
 
-  boredObserver =(newName: any) => {
-    if (newName == 'toto') {
-      this.message = 'boring... not valid!';
-    } else {
-      this.message = 'it s allright :)';
     }
+    return null;
+  };
+
+  loggingObserver = (newName: any) => {
     console.log('lastName: ' + newName);
   }
 
