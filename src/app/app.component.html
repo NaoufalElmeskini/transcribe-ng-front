@@ -1,15 +1,14 @@
 <div class="content">
-  <div class="left-side withMargin">
-    <app-upload (upload)="updateFile($event)"></app-upload>
+  <div class="demo-component withMargin">
+    <interaction-parent-child></interaction-parent-child>
   </div>
-
-  <div class="right-side withMargin">
-    <app-display-transcript [file]="fileUploaded"></app-display-transcript>
-  </div>
-
   
-  <div class="right-side withMargin">
+  <div class="demo-component withMargin">
     <form-demo></form-demo>
+  </div>
+
+  <div class="demo-component withMargin">
+    <dom-demo></dom-demo>
   </div>
 
   

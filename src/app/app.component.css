@@ -1,14 +1,10 @@
 .content {
-    background-color: blue;
-    height: auto;
-    display: flex;
+
 }
 
-.left-side {
+.demo-component {
     background-color: antiquewhite;
-}
-.right-side {
-    background-color: antiquewhite;
+    border-radius: 2%;
 }
 
 .withMargin {
