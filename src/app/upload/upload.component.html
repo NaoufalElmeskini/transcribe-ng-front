@@ -1,4 +1,10 @@
 <h1>upload a video to translate</h1>
+
+<!-- 1. ajouter formulaire et controle qui valide nom saisi  -->
+<!-- 2 tester formulaire et apprendre theorie derriere (dom, angular.Form.validator...) -->
+<!-- 3. ajouter controle qui valide size du fichier  -->
+ 
+
 <input #upload type="file" title="upload" (change)="this.updateFile($event)">
 <p>name: {{ this.file.name }}</p>
 <p>size: {{ this.file.size }}</p>
