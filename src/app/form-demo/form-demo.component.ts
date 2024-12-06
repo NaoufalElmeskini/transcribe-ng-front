@@ -1,5 +1,6 @@
-import { Component, ElementRef, EventEmitter, NgModule, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, NgModule, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'form-demo',
@@ -7,19 +8,22 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   templateUrl: './form-demo.component.html',
   styleUrl: './form-demo.component.css'
 })
-export class FormDemoComponent implements OnInit{
+export class FormDemoComponent implements OnInit, OnDestroy{
   file: any = '';
   lastName = new FormControl('');
   message = 'default';
 
   @Output()
   upload: EventEmitter<any> = new EventEmitter();
+
+  private destroy$ = new Subject<void>();
+
   
   ngOnInit() {
     this.upload.emit('from child with love');
     this.lastName.setValue('oldemort');
-    this.lastName.valueChanges.subscribe(this.godForbidObserver);
     this.lastName.valueChanges.subscribe(this.boredObserver);
+    this.lastName.valueChanges.subscribe(this.godForbidObserver);
   }
 
   godForbidObserver =(newName: any) => {
@@ -40,4 +44,8 @@ export class FormDemoComponent implements OnInit{
     console.log('lastName: ' + newName);
   }
 
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }
